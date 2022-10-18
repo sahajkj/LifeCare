@@ -177,13 +177,53 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Appointment.cs">
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetRole.cs">
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUser.cs">
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserClaim.cs">
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Doctor.cs">
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LifecareDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LifecareDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LifecareDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LifecareDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LifecareDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Patient.cs">
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rating.cs">
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Test.cs">
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestBooking.cs">
+      <DependentUpon>LifecareDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -200,6 +240,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\LifecareDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LifecareDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>LifecareDataModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\LifecareDataModel.edmx.sql" />
+    <Content Include="Models\LifecareDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>LifecareDataModel.cs</LastGenOutput>
+      <DependentUpon>LifecareDataModel.edmx</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\LifecareDataModel.edmx">
@@ -255,7 +306,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
