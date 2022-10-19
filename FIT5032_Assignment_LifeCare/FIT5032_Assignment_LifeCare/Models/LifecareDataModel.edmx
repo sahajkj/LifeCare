@@ -149,6 +149,7 @@
     <Property Name="Price" Type="float" Nullable="false" />
     <Property Name="DoctorId" Type="int" Nullable="false" />
     <Property Name="PatientId" Type="int" Nullable="true" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="TestBookings">
     <Key>
@@ -516,6 +517,7 @@
           <Property Name="DoctorId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Patient" Relationship="LifecareDataModel.PatientAppointment" FromRole="Appointment" ToRole="Patient" />
           <Property Name="PatientId" Type="Int32" Nullable="true" />
+          <Property Name="Text" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="TestBooking">
           <Key>
@@ -711,6 +713,7 @@
           <ScalarProperty Name="Price" ColumnName="Price" />
           <ScalarProperty Name="DoctorId" ColumnName="DoctorId" />
           <ScalarProperty Name="PatientId" ColumnName="PatientId" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

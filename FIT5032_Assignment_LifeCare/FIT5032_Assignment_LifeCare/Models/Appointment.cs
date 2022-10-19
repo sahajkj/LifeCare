@@ -20,6 +20,7 @@ namespace src.Models
         public double Price { get; set; }
         public int DoctorId { get; set; }
         public Nullable<int> PatientId { get; set; }
+        public string Text { get; set; }
     
         public virtual Doctor Doctor { get; set; }
         public virtual Patient Patient { get; set; }

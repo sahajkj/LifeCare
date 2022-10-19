@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/18/2022 22:25:55
+-- Date Created: 10/19/2022 11:19:00
 -- Generated from EDMX file: C:\Users\sahaj\source\repos\FIT5032_Assignment_LifeCare\FIT5032_Assignment_LifeCare\FIT5032_Assignment_LifeCare\Models\LifecareDataModel.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,11 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_AspNetUserDoctor]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Doctors] DROP CONSTRAINT [FK_AspNetUserDoctor];
+IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserClaims] DROP CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId];
 GO
-IF OBJECT_ID(N'[dbo].[FK_AspNetUserPatient]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Patients] DROP CONSTRAINT [FK_AspNetUserPatient];
+IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[AspNetUserLogins] DROP CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId];
 GO
 IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetRole]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetRole];
@@ -29,38 +29,35 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_AspNetUserRoles_AspNetUser]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AspNetUserRoles] DROP CONSTRAINT [FK_AspNetUserRoles_AspNetUser];
 GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserClaims] DROP CONSTRAINT [FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AspNetUserLogins] DROP CONSTRAINT [FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId];
-GO
 IF OBJECT_ID(N'[dbo].[FK_DoctorAppointment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Appointments] DROP CONSTRAINT [FK_DoctorAppointment];
-GO
-IF OBJECT_ID(N'[dbo].[FK_DoctorRating]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Ratings] DROP CONSTRAINT [FK_DoctorRating];
 GO
 IF OBJECT_ID(N'[dbo].[FK_PatientAppointment]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Appointments] DROP CONSTRAINT [FK_PatientAppointment];
 GO
-IF OBJECT_ID(N'[dbo].[FK_PatientRating]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Ratings] DROP CONSTRAINT [FK_PatientRating];
-GO
 IF OBJECT_ID(N'[dbo].[FK_PatientTestBooking]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TestBookings] DROP CONSTRAINT [FK_PatientTestBooking];
 GO
+IF OBJECT_ID(N'[dbo].[FK_DoctorRating]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Ratings] DROP CONSTRAINT [FK_DoctorRating];
+GO
 IF OBJECT_ID(N'[dbo].[FK_TestTestBooking]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[TestBookings] DROP CONSTRAINT [FK_TestTestBooking];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PatientRating]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Ratings] DROP CONSTRAINT [FK_PatientRating];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserDoctor]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Doctors] DROP CONSTRAINT [FK_AspNetUserDoctor];
+GO
+IF OBJECT_ID(N'[dbo].[FK_AspNetUserPatient]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Patients] DROP CONSTRAINT [FK_AspNetUserPatient];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Appointments]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Appointments];
-GO
 IF OBJECT_ID(N'[dbo].[AspNetRoles]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetRoles];
 GO
@@ -70,26 +67,29 @@ GO
 IF OBJECT_ID(N'[dbo].[AspNetUserLogins]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUserLogins];
 GO
-IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AspNetUserRoles];
-GO
 IF OBJECT_ID(N'[dbo].[AspNetUsers]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AspNetUsers];
 GO
-IF OBJECT_ID(N'[dbo].[Doctors]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Doctors];
+IF OBJECT_ID(N'[dbo].[Tests]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tests];
 GO
 IF OBJECT_ID(N'[dbo].[Patients]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Patients];
 GO
-IF OBJECT_ID(N'[dbo].[Ratings]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Ratings];
+IF OBJECT_ID(N'[dbo].[Doctors]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Doctors];
+GO
+IF OBJECT_ID(N'[dbo].[Appointments]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Appointments];
 GO
 IF OBJECT_ID(N'[dbo].[TestBookings]', 'U') IS NOT NULL
     DROP TABLE [dbo].[TestBookings];
 GO
-IF OBJECT_ID(N'[dbo].[Tests]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Tests];
+IF OBJECT_ID(N'[dbo].[Ratings]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Ratings];
+GO
+IF OBJECT_ID(N'[dbo].[AspNetUserRoles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[AspNetUserRoles];
 GO
 
 -- --------------------------------------------------
@@ -174,7 +174,8 @@ CREATE TABLE [dbo].[Appointments] (
     [Status] bit  NOT NULL,
     [Price] float  NOT NULL,
     [DoctorId] int  NOT NULL,
-    [PatientId] int  NULL
+    [PatientId] int  NULL,
+    [Text] nvarchar(max)  NOT NULL
 );
 GO
 
