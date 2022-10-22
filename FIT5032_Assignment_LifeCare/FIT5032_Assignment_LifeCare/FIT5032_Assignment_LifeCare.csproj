@@ -177,7 +177,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
     <Compile Include="Controllers\RatingsController.cs" />
-    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TestBookingsController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -225,7 +224,6 @@
     <Compile Include="Models\Rating.cs">
       <DependentUpon>LifecareDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\Test.cs">
       <DependentUpon>LifecareDataModel.tt</DependentUpon>
     </Compile>
