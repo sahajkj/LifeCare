@@ -17,6 +17,7 @@
         <AssociationConnector Association="LifecareDataModel.DoctorRating" />
         <AssociationConnector Association="LifecareDataModel.TestTestBooking" />
         <AssociationConnector Association="LifecareDataModel.PatientRating" />
+        <EntityTypeShape EntityType="LifecareDataModel.Image" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

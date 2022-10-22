@@ -4,174 +4,183 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="LifecareDataModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="LifecareDataModelStoreContainer">
-    <EntitySet Name="Tests" EntityType="LifecareDataModel.Store.Tests" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Patients" EntityType="LifecareDataModel.Store.Patients" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Doctors" EntityType="LifecareDataModel.Store.Doctors" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Appointments" EntityType="LifecareDataModel.Store.Appointments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="TestBookings" EntityType="LifecareDataModel.Store.TestBookings" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Ratings" EntityType="LifecareDataModel.Store.Ratings" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="DoctorAppointment" Association="LifecareDataModel.Store.DoctorAppointment">
-      <End Role="Doctor" EntitySet="Doctors" />
-      <End Role="Appointment" EntitySet="Appointments" />
-    </AssociationSet>
-    <AssociationSet Name="PatientAppointment" Association="LifecareDataModel.Store.PatientAppointment">
-      <End Role="Patient" EntitySet="Patients" />
-      <End Role="Appointment" EntitySet="Appointments" />
-    </AssociationSet>
-    <AssociationSet Name="PatientTestBooking" Association="LifecareDataModel.Store.PatientTestBooking">
-      <End Role="Patient" EntitySet="Patients" />
-      <End Role="TestBooking" EntitySet="TestBookings" />
-    </AssociationSet>
-    <AssociationSet Name="DoctorRating" Association="LifecareDataModel.Store.DoctorRating">
-      <End Role="Doctor" EntitySet="Doctors" />
-      <End Role="Rating" EntitySet="Ratings" />
-    </AssociationSet>
-    <AssociationSet Name="TestTestBooking" Association="LifecareDataModel.Store.TestTestBooking">
-      <End Role="Test" EntitySet="Tests" />
-      <End Role="TestBooking" EntitySet="TestBookings" />
-    </AssociationSet>
-    <AssociationSet Name="PatientRating" Association="LifecareDataModel.Store.PatientRating">
-      <End Role="Patient" EntitySet="Patients" />
-      <End Role="Rating" EntitySet="Ratings" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Tests">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Price" Type="float" Nullable="false" />
-    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Patients">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
-    <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Doctors">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Speciality" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Appointments">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DateTime" Type="datetime" Nullable="false" />
-    <Property Name="Status" Type="bit" Nullable="false" />
-    <Property Name="Price" Type="float" Nullable="false" />
-    <Property Name="DoctorId" Type="int" Nullable="false" />
-    <Property Name="PatientId" Type="int" Nullable="true" />
-    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="TestBookings">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DateTime" Type="datetime" Nullable="false" />
-    <Property Name="Status" Type="bit" Nullable="false" />
-    <Property Name="PatientId" Type="int" Nullable="true" />
-    <Property Name="TestId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Ratings">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Value" Type="int" Nullable="false" />
-    <Property Name="DoctorId" Type="int" Nullable="false" />
-    <Property Name="PatientId" Type="int" Nullable="false" />
-  </EntityType>
-  <Association Name="DoctorAppointment">
-    <End Role="Doctor" Type="LifecareDataModel.Store.Doctors" Multiplicity="1" />
-    <End Role="Appointment" Type="LifecareDataModel.Store.Appointments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Doctor">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Appointment">
-        <PropertyRef Name="DoctorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PatientAppointment">
-    <End Role="Patient" Type="LifecareDataModel.Store.Patients" Multiplicity="0..1" />
-    <End Role="Appointment" Type="LifecareDataModel.Store.Appointments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Patient">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Appointment">
-        <PropertyRef Name="PatientId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PatientTestBooking">
-    <End Role="Patient" Type="LifecareDataModel.Store.Patients" Multiplicity="0..1" />
-    <End Role="TestBooking" Type="LifecareDataModel.Store.TestBookings" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Patient">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TestBooking">
-        <PropertyRef Name="PatientId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="DoctorRating">
-    <End Role="Doctor" Type="LifecareDataModel.Store.Doctors" Multiplicity="1" />
-    <End Role="Rating" Type="LifecareDataModel.Store.Ratings" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Doctor">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Rating">
-        <PropertyRef Name="DoctorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="TestTestBooking">
-    <End Role="Test" Type="LifecareDataModel.Store.Tests" Multiplicity="1" />
-    <End Role="TestBooking" Type="LifecareDataModel.Store.TestBookings" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Test">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="TestBooking">
-        <PropertyRef Name="TestId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="PatientRating">
-    <End Role="Patient" Type="LifecareDataModel.Store.Patients" Multiplicity="1" />
-    <End Role="Rating" Type="LifecareDataModel.Store.Ratings" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Patient">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Rating">
-        <PropertyRef Name="PatientId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="LifecareDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appointments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="DoctorId" Type="int" Nullable="false" />
+          <Property Name="PatientId" Type="int" />
+          <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Speciality" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Path" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="DoctorId" Type="int" Nullable="false" />
+          <Property Name="PatientId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestBookings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="PatientId" Type="int" />
+          <Property Name="TestId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tests">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DoctorAppointment">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorRating">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientAppointment">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientRating">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PatientTestBooking">
+          <End Role="Patients" Type="Self.Patients" Multiplicity="0..1" />
+          <End Role="TestBookings" Type="Self.TestBookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Patients">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestBookings">
+              <PropertyRef Name="PatientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestTestBooking">
+          <End Role="Tests" Type="Self.Tests" Multiplicity="1" />
+          <End Role="TestBookings" Type="Self.TestBookings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tests">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestBookings">
+              <PropertyRef Name="TestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LifecareDataModelStoreContainer">
+          <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TestBookings" EntityType="Self.TestBookings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tests" EntityType="Self.Tests" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DoctorAppointment" Association="Self.FK_DoctorAppointment">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorRating" Association="Self.FK_DoctorRating">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientAppointment" Association="Self.FK_PatientAppointment">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientRating" Association="Self.FK_PatientRating">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PatientTestBooking" Association="Self.FK_PatientTestBooking">
+            <End Role="Patients" EntitySet="Patients" />
+            <End Role="TestBookings" EntitySet="TestBookings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestTestBooking" Association="Self.FK_TestTestBooking">
+            <End Role="Tests" EntitySet="Tests" />
+            <End Role="TestBookings" EntitySet="TestBookings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="LifecareDataModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -206,6 +215,7 @@
             <End Role="Patient" EntitySet="Patients" />
             <End Role="Rating" EntitySet="Ratings" />
           </AssociationSet>
+          <EntitySet Name="Images" EntityType="LifecareDataModel.Image" />
         </EntityContainer>
         <EntityType Name="Test">
           <Key>
@@ -229,8 +239,8 @@
           <NavigationProperty Name="Appointments" Relationship="LifecareDataModel.PatientAppointment" FromRole="Patient" ToRole="Appointment" />
           <NavigationProperty Name="TestBookings" Relationship="LifecareDataModel.PatientTestBooking" FromRole="Patient" ToRole="TestBooking" />
           <NavigationProperty Name="Ratings" Relationship="LifecareDataModel.PatientRating" FromRole="Patient" ToRole="Rating" />
-          <Property Name="FirstName" Type="String" Nullable="false" />
-          <Property Name="LastName" Type="String" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
@@ -240,9 +250,9 @@
           <Property Name="Speciality" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Appointments" Relationship="LifecareDataModel.DoctorAppointment" FromRole="Doctor" ToRole="Appointment" />
           <NavigationProperty Name="Ratings" Relationship="LifecareDataModel.DoctorRating" FromRole="Doctor" ToRole="Rating" />
-          <Property Name="FirstName" Type="String" Nullable="false" />
-          <Property Name="LastName" Type="String" Nullable="false" />
-          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Appointment">
           <Key>
@@ -256,7 +266,7 @@
           <Property Name="DoctorId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Patient" Relationship="LifecareDataModel.PatientAppointment" FromRole="Appointment" ToRole="Patient" />
           <Property Name="PatientId" Type="Int32" Nullable="true" />
-          <Property Name="Text" Type="String" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="TestBooking">
           <Key>
@@ -353,6 +363,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Path" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -427,6 +445,15 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="LifecareDataModel.Image">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
