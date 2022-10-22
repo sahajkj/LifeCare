@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
+using System.Web.Mvc;
 
 [assembly: OwinStartupAttribute(typeof(src.Startup))]
 namespace src
@@ -9,6 +10,7 @@ namespace src
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            MvcHandler.DisableMvcResponseHeader = true;
         }
     }
 }

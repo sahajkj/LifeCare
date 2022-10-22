@@ -17,5 +17,13 @@ namespace src
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_PreSendRequestHeaders()
+        {
+            if (HttpContext.Current != null)
+            {
+                HttpContext.Current.Response.Headers.Remove("Server");
+            }
+        }
     }
 }

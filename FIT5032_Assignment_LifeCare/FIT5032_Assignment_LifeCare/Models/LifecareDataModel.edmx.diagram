@@ -4,16 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a810e37b142e488c868b97afbb109b91" Name="Diagram1" ZoomLevel="71" >
-        <EntityTypeShape EntityType="LifecareDataModel.AspNetRole" Width="1.5" PointX="1.25" PointY="2.125" />
-        <EntityTypeShape EntityType="LifecareDataModel.AspNetUserClaim" Width="1.5" PointX="3.125" PointY="3.5" />
-        <EntityTypeShape EntityType="LifecareDataModel.AspNetUserLogin" Width="1.5" PointX="3.25" PointY="1" />
-        <EntityTypeShape EntityType="LifecareDataModel.AspNetUser" Width="1.5" PointX="5.5" PointY="1.25" />
-        <AssociationConnector Association="LifecareDataModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="LifecareDataModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
-        <AssociationConnector Association="LifecareDataModel.AspNetUserRoles" />
+      <Diagram DiagramId="a810e37b142e488c868b97afbb109b91" Name="Diagram1" ZoomLevel="78" >
         <EntityTypeShape EntityType="LifecareDataModel.Test" Width="1.5" PointX="12.5" PointY="4.25" />
-        <EntityTypeShape EntityType="LifecareDataModel.Patient" Width="1.5" PointX="8.125" PointY="2.875" />
+        <EntityTypeShape EntityType="LifecareDataModel.Patient" Width="1.5" PointX="7.875" PointY="3.25" />
         <EntityTypeShape EntityType="LifecareDataModel.Doctor" Width="1.5" PointX="8.125" PointY="0.5" />
         <EntityTypeShape EntityType="LifecareDataModel.Appointment" Width="1.5" PointX="12.5" PointY="0.5" />
         <EntityTypeShape EntityType="LifecareDataModel.TestBooking" Width="1.5" PointX="10.375" PointY="4.375" />
@@ -24,8 +17,6 @@
         <AssociationConnector Association="LifecareDataModel.DoctorRating" />
         <AssociationConnector Association="LifecareDataModel.TestTestBooking" />
         <AssociationConnector Association="LifecareDataModel.PatientRating" />
-        <AssociationConnector Association="LifecareDataModel.AspNetUserDoctor" />
-        <AssociationConnector Association="LifecareDataModel.AspNetUserPatient" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
