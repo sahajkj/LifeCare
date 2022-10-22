@@ -10,119 +10,107 @@ using src.Models;
 
 namespace src.Controllers
 {
-    public class Appointments2Controller : Controller
+    public class TestsController : Controller
     {
         private LifecareDataModelContainer db = new LifecareDataModelContainer();
 
-        // GET: Appointments2
+        // GET: Tests
         public ActionResult Index()
         {
-            var appointments = db.Appointments.Include(a => a.Doctor).Include(a => a.Patient);
-            return View(appointments.ToList());
+            return View(db.Tests.ToList());
         }
 
-        // GET: Appointments2/Details/5
+        // GET: Tests/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Appointment appointment = db.Appointments.Find(id);
-            if (appointment == null)
+            Test test = db.Tests.Find(id);
+            if (test == null)
             {
                 return HttpNotFound();
             }
-            return View(appointment);
+            return View(test);
         }
 
-        // GET: Appointments2/Create
-        public ActionResult Create(String date)
+        // GET: Tests/Create
+        public ActionResult Create()
         {
-            if (null == date)
-                return RedirectToAction("Index");
-            Appointment appointment = new Appointment();
-            DateTime convertedDate = DateTime.Parse(date);
-            appointment.DateTime = convertedDate;
-            return View(appointment);
+            return View();
         }
 
-        // POST: Appointments2/Create
+        // POST: Tests/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,DateTime,Status,Price,DoctorId,PatientId")] Appointment appointment)
+        public ActionResult Create([Bind(Include = "Id,Name,Price,Type")] Test test)
         {
             if (ModelState.IsValid)
             {
-                db.Appointments.Add(appointment);
+                db.Tests.Add(test);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Speciality", appointment.DoctorId);
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Gender", appointment.PatientId);
-            return View(appointment);
+            return View(test);
         }
 
-        // GET: Appointments2/Edit/5
+        // GET: Tests/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Appointment appointment = db.Appointments.Find(id);
-            if (appointment == null)
+            Test test = db.Tests.Find(id);
+            if (test == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Speciality", appointment.DoctorId);
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Gender", appointment.PatientId);
-            return View(appointment);
+            return View(test);
         }
 
-        // POST: Appointments2/Edit/5
+        // POST: Tests/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,DateTime,Status,Price,DoctorId,PatientId")] Appointment appointment)
+        public ActionResult Edit([Bind(Include = "Id,Name,Price,Type")] Test test)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(appointment).State = EntityState.Modified;
+                db.Entry(test).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Speciality", appointment.DoctorId);
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Gender", appointment.PatientId);
-            return View(appointment);
+            return View(test);
         }
 
-        // GET: Appointments2/Delete/5
+        // GET: Tests/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Appointment appointment = db.Appointments.Find(id);
-            if (appointment == null)
+            Test test = db.Tests.Find(id);
+            if (test == null)
             {
                 return HttpNotFound();
             }
-            return View(appointment);
+            return View(test);
         }
 
-        // POST: Appointments2/Delete/5
+        // POST: Tests/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Appointment appointment = db.Appointments.Find(id);
-            db.Appointments.Remove(appointment);
+            Test test = db.Tests.Find(id);
+            db.Tests.Remove(test);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
