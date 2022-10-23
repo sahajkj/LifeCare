@@ -36,12 +36,15 @@ namespace src.Controllers
             return View(appointment);
         }
 
-        // GET: Appointments/Create
-        public ActionResult Create()
+        // GET: Events/Create?date=YYYY-MM-DD
+        public ActionResult Create(String date)
         {
-            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "Speciality");
-            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Gender");
-            return View();
+            if (null == date)
+                return RedirectToAction("Index");
+            Appointment e = new Appointment();
+            DateTime convertedDate = DateTime.Parse(date);
+            e.DateTime = convertedDate;
+            return View(e);
         }
 
         // POST: Appointments/Create
