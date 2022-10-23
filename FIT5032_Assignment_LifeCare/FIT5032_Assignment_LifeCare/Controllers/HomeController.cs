@@ -6,8 +6,10 @@ using System.Web.Mvc;
 
 namespace src.Controllers
 {
+    [RequireHttps]
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             return View();
