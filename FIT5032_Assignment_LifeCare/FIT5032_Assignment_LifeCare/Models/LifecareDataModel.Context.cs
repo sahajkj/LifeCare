@@ -32,5 +32,6 @@ namespace src.Models
         public virtual DbSet<TestBooking> TestBookings { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Image> Images { get; set; }
+        public virtual DbSet<AppRating> AppRatings { get; set; }
     }
 }
