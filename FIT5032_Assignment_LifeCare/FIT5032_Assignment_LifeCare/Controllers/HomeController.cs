@@ -26,5 +26,11 @@ namespace src.Controllers
 
             return View();
         }
+
+        public ActionResult HomePage()
+        {
+            ViewBag.Message = "Lifecare Home";
+            return View();
+        }
     }
 }
