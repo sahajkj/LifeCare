@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using src.Models;
 
 namespace src.Controllers
@@ -38,6 +39,8 @@ namespace src.Controllers
         // GET: Doctors/Create
         public ActionResult Create()
         {
+            string user = User.Identity.GetUserName();
+            ViewBag.User = user;
             return View();
         }
 

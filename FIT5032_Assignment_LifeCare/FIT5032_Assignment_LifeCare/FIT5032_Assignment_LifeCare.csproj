@@ -184,6 +184,7 @@
     <Compile Include="Controllers\Images1Controller.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
+    <Compile Include="Controllers\TestBookingsController.cs" />
     <Compile Include="Controllers\TestsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -681,6 +682,11 @@
     <Content Include="Views\AppRatings\Edit.cshtml" />
     <Content Include="Views\AppRatings\Index.cshtml" />
     <Content Include="Views\Tests\Send_Email.cshtml" />
+    <Content Include="Views\TestBookings\Create.cshtml" />
+    <Content Include="Views\TestBookings\Delete.cshtml" />
+    <Content Include="Views\TestBookings\Details.cshtml" />
+    <Content Include="Views\TestBookings\Edit.cshtml" />
+    <Content Include="Views\TestBookings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

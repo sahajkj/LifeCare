@@ -8,148 +8,123 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using src.Models;
-using src.Utils;
 
 namespace src.Controllers
 {
-    public class TestsController : Controller
+    public class TestBookingsController : Controller
     {
         private LifecareDataModelContainer db = new LifecareDataModelContainer();
 
-        // GET: Tests
+        // GET: TestBookings
         public ActionResult Index()
         {
-            return View(db.Tests.ToList());
+            var testBookings = db.TestBookings.Include(t => t.Patient).Include(t => t.Test);
+            return View(testBookings.ToList());
         }
 
-        // GET: Tests/Details/5
+        // GET: TestBookings/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Test test = db.Tests.Find(id);
-            if (test == null)
+            TestBooking testBooking = db.TestBookings.Find(id);
+            if (testBooking == null)
             {
                 return HttpNotFound();
             }
-            return View(test);
+            return View(testBooking);
         }
 
-        // GET: Tests/Create
+        // GET: TestBookings/Create
         public ActionResult Create()
         {
+            string user = User.Identity.GetUserName();
+            ViewBag.userResult = user;
+            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Gender"); //db.Patients.Where(patient ==> patient.Email == user);
+            ViewBag.TestId = new SelectList(db.Tests, "Id", "Name");
             return View();
         }
 
-        // POST: Tests/Create
+        // POST: TestBookings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Price,Type")] Test test)
+        public ActionResult Create([Bind(Include = "Id,DateTime,Status,PatientId,TestId")] TestBooking testBooking)
         {
             if (ModelState.IsValid)
             {
-                db.Tests.Add(test);
+                db.TestBookings.Add(testBooking);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(test);
+            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Gender", testBooking.PatientId);
+            ViewBag.TestId = new SelectList(db.Tests, "Id", "Name", testBooking.TestId);
+            return View(testBooking);
         }
 
-        // GET: Tests/Edit/5
+        // GET: TestBookings/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Test test = db.Tests.Find(id);
-            if (test == null)
+            TestBooking testBooking = db.TestBookings.Find(id);
+            if (testBooking == null)
             {
                 return HttpNotFound();
             }
-            return View(test);
+            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Gender", testBooking.PatientId);
+            ViewBag.TestId = new SelectList(db.Tests, "Id", "Name", testBooking.TestId);
+            return View(testBooking);
         }
 
-        // POST: Tests/Edit/5
+        // POST: TestBookings/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Price,Type")] Test test)
+        public ActionResult Edit([Bind(Include = "Id,DateTime,Status,PatientId,TestId")] TestBooking testBooking)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(test).State = EntityState.Modified;
+                db.Entry(testBooking).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(test);
+            ViewBag.PatientId = new SelectList(db.Patients, "Id", "Gender", testBooking.PatientId);
+            ViewBag.TestId = new SelectList(db.Tests, "Id", "Name", testBooking.TestId);
+            return View(testBooking);
         }
 
-        // GET: Tests/Delete/5
+        // GET: TestBookings/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Test test = db.Tests.Find(id);
-            if (test == null)
+            TestBooking testBooking = db.TestBookings.Find(id);
+            if (testBooking == null)
             {
                 return HttpNotFound();
             }
-            return View(test);
+            return View(testBooking);
         }
 
-        // POST: Tests/Delete/5
+        // POST: TestBookings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Test test = db.Tests.Find(id);
-            db.Tests.Remove(test);
+            TestBooking testBooking = db.TestBookings.Find(id);
+            db.TestBookings.Remove(testBooking);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        public ActionResult Send_Email()
-        {
-            return View(new SendEmailViewModel());
-        }
-
-        [HttpPost]
-        public ActionResult Send_Email(SendEmailViewModel model)
-        {
-            string email = User.Identity.GetUserName();
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    String toEmail = email;
-                    String subject = model.Subject;
-                    String contents = model.Contents;
-
-                    EmailSender es = new EmailSender();
-                    es.Send(toEmail, subject, contents);
-
-                    ViewBag.Result = "Email has been sent.";
-
-                    ModelState.Clear();
-
-                    return View(new SendEmailViewModel());
-                }
-                catch
-                {
-                    return View();
-                }
-            }
-
-            return View();
         }
 
         protected override void Dispose(bool disposing)

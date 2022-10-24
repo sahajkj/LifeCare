@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using src.Models;
 
 namespace src.Controllers
@@ -38,6 +39,8 @@ namespace src.Controllers
         // GET: Patients/Create
         public ActionResult Create()
         {
+            string user = User.Identity.GetUserName();
+            ViewBag.User = user;
             return View();
         }
 
@@ -46,7 +49,7 @@ namespace src.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Gender,DateOfBirth,Latitude,Longitude,FirstName,LastName")] Patient patient)
+        public ActionResult Create([Bind(Include = "Id,Gender,DateOfBirth,Latitude,Longitude,FirstName,LastName,Email")] Patient patient)
         {
             if (ModelState.IsValid)
             {

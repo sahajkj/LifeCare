@@ -52,10 +52,11 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Gender" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
-          <Property Name="Latitude" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Longitude" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Latitude" Type="nvarchar(max)" />
+          <Property Name="Longitude" Type="nvarchar(max)" />
           <Property Name="FirstName" Type="nvarchar(max)" Nullable="false" />
           <Property Name="LastName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Ratings">
           <Key>
@@ -246,13 +247,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Gender" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Latitude" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Longitude" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Latitude" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Longitude" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Appointments" Relationship="LifecareDataModel.PatientAppointment" FromRole="Patient" ToRole="Appointment" />
           <NavigationProperty Name="TestBookings" Relationship="LifecareDataModel.PatientTestBooking" FromRole="Patient" ToRole="TestBooking" />
           <NavigationProperty Name="Ratings" Relationship="LifecareDataModel.PatientRating" FromRole="Patient" ToRole="Rating" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Doctor">
           <Key>
@@ -412,7 +414,8 @@
     <EntitySetMapping Name="Patients">
       <EntityTypeMapping TypeName="IsTypeOf(LifecareDataModel.Patient)">
         <MappingFragment StoreEntitySet="Patients">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
           <ScalarProperty Name="Latitude" ColumnName="Latitude" />
