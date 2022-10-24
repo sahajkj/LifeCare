@@ -55,7 +55,7 @@ namespace src.Controllers
             {
                 db.Doctors.Add(doctor);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("../Home/HomePage");
             }
 
             return View(doctor);

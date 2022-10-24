@@ -6,14 +6,21 @@
     <h1>Lifecare</h1>
     <p class="lead" style="font-style:italic">Adding Convinience To Healthcare</p>
 
-    <div class="row">
-        <div class="col-md-2">
-            <p><a class="btn btn-default" href="/Account/Login">Login&raquo;</a></p>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="row">
+            <div class="col-md-2">
+                <p><a class="btn btn-default" href="/Account/Login">Login&raquo;</a></p>
+            </div>
+            <div class="col-md-10">
+                <p><a class="btn btn-default" href="/Account/Register">Register&raquo;</a></p>
+            </div>
         </div>
-        <div class="col-md-10">
-            <p><a class="btn btn-default" href="/Account/Register">Register&raquo;</a></p>
+    }
+    else
+    {
+        <div>
+            <p>Choose an option from the Navigation bar to continue...</p>
         </div>
-    </div>
+    }
 </div>
-
--

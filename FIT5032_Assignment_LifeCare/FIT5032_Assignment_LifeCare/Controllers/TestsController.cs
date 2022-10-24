@@ -131,7 +131,7 @@ namespace src.Controllers
                 try
                 {
                     String toEmail = email;
-                    String subject = model.Subject;
+                    String subject = "Booking Confirmed - Lifecare";
                     String contents = model.Contents;
 
                     EmailSender es = new EmailSender();

@@ -54,6 +54,7 @@ namespace src.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,DateTime,Status,Price,DoctorId,PatientId,Text")] Appointment appointment)
         {
+          //  appointment.DoctorId = 
             if (ModelState.IsValid)
             {
                 db.Appointments.Add(appointment);
